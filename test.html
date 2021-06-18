@@ -26,7 +26,7 @@
         } else if (Notification.permission === "default") {
             Notification.requestPermission().then(permission => {
                 console.log(Notification.permission);
-                showNotification(crd);
+                showNotification();
             }, error => {
                 console.log();
             })

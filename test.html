@@ -13,22 +13,22 @@
 
 
     <script>
-        const showNotification = (crd) => {
+        const showNotification = () => {
             const notification = new Notification("Message from Parking", {
-                body: `<br>lat: ${crd.latitude} long: ${crd.longitude}`,
+                body: `hello`,
             });
         };
 
         if (Notification.permission === "granted") {
             console.log("Notification Permission Granted");
-            showNotification(crd);
+            showNotification();
 
         } else if (Notification.permission === "default") {
             Notification.requestPermission().then(permission => {
                 console.log(Notification.permission);
                 showNotification(crd);
             }, error => {
-                console.log(error);
+                console.log();
             })
         }
         var id, target, options;
@@ -36,7 +36,7 @@
         function success(pos) {
             var crd = pos.coords;
             data.innerHTML += (`<br>lat: ${crd.latitude} long: ${crd.longitude}`);
-            showNotification(crd);
+            showNotification();
             // if (target.latitude === crd.latitude && target.longitude === crd.longitude) {
             //     console.log('Congratulations, you reached the target');
             //     navigator.geolocation.clearWatch(id);

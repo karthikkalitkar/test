@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button class="btn btn-primary center" id="find-me">Show my location</button><br />
+    <div id="data"></div>
+
+
+    <script>
+        var id, target, options;
+        const data = document.getElementById("data");
+        function success(pos) {
+            var crd = pos.coords;
+            data.innerHTML += (`<br>lat: ${crd.latitude} long: ${crd.longitude}`);
+            console.log(crd);
+            // if (target.latitude === crd.latitude && target.longitude === crd.longitude) {
+            //     console.log('Congratulations, you reached the target');
+            //     navigator.geolocation.clearWatch(id);
+            // }
+        }
+
+        function error(err) {
+            console.log('ERROR(' + err.code + '): ' + err.message);
+        }
+
+        target = {
+            latitude: 0,
+            longitude: 0
+        };
+
+        options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
+        };
+
+        function geoFindMe() {
+            if (!navigator.geolocation) {
+                alert('Geolocation is not supported by your browser');
+            } else {
+                alert("hello");
+                // navigator.geolocation.getCurrentPosition(success, error);
+                navigator.geolocation.watchPosition(success, error, options);
+            }
+        }
+        // id = navigator.geolocation.watchPosition(success, error, options);
+        document.querySelector('#find-me').addEventListener('click', geoFindMe);
+        document.getElementById('find-me').click();
+    </script>
+</body>
+
+</html>
